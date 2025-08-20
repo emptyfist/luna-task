@@ -30,7 +30,7 @@ import Users from "./pages/AdminPages/Users";
 import ManageUsers from "./pages/AdminPages/ManageUsers";
 import ManageTasks from "./pages/AdminPages/ManageTasks";
 import Settings from "./pages/AdminPages/Settings";
-import UserLogPage from "./pages/AdminPages/UserLogPage";
+import UserLogs from "./pages/AdminPages/Logs";
 
 // User Pages
 import UserDashboard from "./pages/UserPages/Dashboard";
@@ -101,11 +101,13 @@ function App() {
             <main className="flex-grow">
               <Routes>
                 {/* Public Routes */}
-                <Route path="/" element={
-                <ProtectedRoute>
-                  <Landing />
-                </ProtectedRoute>
-                } />
+                <Route path="/" 
+                  element={
+                    <ProtectedRoute>
+                      <Landing />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -153,10 +155,10 @@ function App() {
                   } 
                 />
                 <Route 
-                  path="/admin/user-logs" 
+                  path="/admin/logs" 
                   element={
                     <ProtectedRoute requiredRole="admin">
-                      <UserLogPage />
+                      <UserLogs />
                     </ProtectedRoute>
                   } 
                 />

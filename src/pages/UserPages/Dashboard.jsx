@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { FaTimes } from "react-icons/fa";
 import { DndContext, closestCorners } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Bar } from "react-chartjs-2";
@@ -219,9 +220,9 @@ const UserDashboard = () => {
             {(searchTerm || statusFilter !== "all") && (
               <button
                 onClick={clearFilters}
-                className="p-2 py-2 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors"
+                className="p-3 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors"
               >
-                <img alt="Clear Filters" src='/clear.svg' className="size-5" />
+                <FaTimes aria-hidden="true" />
               </button>
             )}
           </div>

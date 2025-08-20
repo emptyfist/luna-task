@@ -202,12 +202,13 @@ const Signup = () => {
       
       // Create log entry for admin tracking
       const logData = {
+        id: `log-${Date.now()}-${newUser.userId}`,
         userId: newUser.userId,
         username: newUser.email,
         fullName: newUser.fullName,
         role: newUser.role,
         action: "register",
-        loginTime: new Date().toISOString(),
+        actionAt: new Date().toISOString(),
         ipAddress: "127.0.0.1", // In production, this would be captured from the request
         tokenName: mockToken.substring(0, 10) + "..." // Truncated for security
       };

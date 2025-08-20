@@ -112,6 +112,33 @@ const AuthProvider = ({ children }) => {
    * Clears authentication data and resets state
    */
   const handleLogout = () => {
+    // Get user info before clearing
+    const userId = localStorage.getItem("userId");
+    const email = localStorage.getItem("email");
+    const role = localStorage.getItem("userRole");
+    const token = localStorage.getItem("token");
+    
+    // Create logout log entry
+    if (userId && email && role && token) {
+      const logoutLog = {
+        id: `log-${Date.now()}`,
+        userId: userId,
+        username: email,
+        role: role,
+        action: "logout",
+        actionAt: new Date().toISOString(),
+        ipAddress: "127.0.0.1", // In production, this would be captured from the request
+        tokenName: token.substring(0, 10) + "..." // Truncated for security
+      };
+      
+      // Store logout logs in localStorage for admin view
+      const existingLogs = JSON.parse(localStorage.getItem('userLogs') || '[]');
+      existingLogs.push(logoutLog);
+      localStorage.setItem('userLogs', JSON.stringify(existingLogs));
+      
+      console.log("User logout logged:", logoutLog);
+    }
+    
     // Clear all auth-related data from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("userRole");
